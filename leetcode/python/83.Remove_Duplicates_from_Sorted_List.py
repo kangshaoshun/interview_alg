@@ -27,3 +27,26 @@ class Solution(object):
         res.next = None
         return ret.next
 
+
+
+
+#改进版
+class Solution(object):
+    def deleteDuplicates(self, head):
+        """"
+            借助和82题一样的思想
+        """"
+        helper = ListNode(0)
+        helper.next = head
+        pre = head
+        while head and head.next:
+            if head.val != head.next.val:
+                head = head.next
+                pre = head
+            else:
+                tmp = head.val 
+                while head and head.val == tmp:
+                    head = head.next
+                pre.next = head
+                pre = head
+        return helper.next
