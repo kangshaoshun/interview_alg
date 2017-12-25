@@ -1,1 +1,1 @@
-#notes for sort alg
+# notes for sort alg
