@@ -126,7 +126,6 @@ t.start()
 t.join()
 print 'thread %s ended.'%threading.current_thread().name
 ```
-"""
 
 python多线程的一些说明：
 + 由于任何进程默认就会启动一个线程，我们把该线程称为主线程(MainThread)，主线程又可以启动新的线程，python的threading模块有一个current_thread()方法，它永远返回当前线程的实例。
