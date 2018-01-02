@@ -53,3 +53,51 @@ if __name__ == '__main__':
   print 'All subprocesses done'
   #默认情况下，pool并发执行的进程数等于cpu核数量，当然可以通过p = Pool(n)来设置
 ```
+
+### 进程间通信
+*python的multiprocessing模块包装了底层的机制，提供了Queue、Pipes等多种方式来交换数据。*
+```python
+from multiprocessing import Queue, Process
+import os
+import time
+import random
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+def write(q， lock):
+  lock.acquire()  #get lock
+  for value in ['a', 'b', 'c', 'd']:
+    print 'put value:%s in queue'%value
+    q.put(value)
+    time.sleep(random.random())
+  lock.release() #release lock
+
+def read(q):
+  while True：
+    value = q.get(True)
+    print 'get value:%s from queue'%value
+
+if __name__ == '__main__':
+  q = Queue()
+  qw = Process(target=write, args=(q,))
+  qr = Process(target=read, args=(q,))
+  qw.start()
+  qr.start()
+  qw.join()
+  qr.terminate() #qr是一个死循环进程，需要手工terminate
+```
+**Queue在Pool中不起作用，需要使用Manager类来辅助生成共享队列**
+```python
+from multiprocessing import Manager
+...
+if __name__ == '__main__':
+  manager = Manager()
+  q = manager.Queue()
+  lock = manager.Lock() #也可以通过Manager类使用锁机制
+  p = Pool()
+  p.apply_async(write, args=(q, lock))
+  p.apply_async(read, args=(q,))
+  p.close()
+  p.join()
+```
