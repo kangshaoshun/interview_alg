@@ -30,7 +30,7 @@ if __name__ == '__main__':
 ```
 
 ### Pool
-* **如果要启动大量的子进程，可以使用进程池的方式批量创建子进程** *
+*如果要启动大量的子进程，可以使用进程池的方式批量创建子进程*
 ```python
 from multiprocessing import Pool
 import os,time,random
@@ -51,5 +51,5 @@ if __name__ == '__main__':
   p.close() #调用close方法之后，就不能网进程池中添加进程了
   p.join()  #调用join方法等待子进程全部执行结束
   print 'All subprocesses done'
-  **默认情况下，pool并发执行的进程数等于cpu核数量，当然可以通过p = Pool(n)来设置**
+  #默认情况下，pool并发执行的进程数等于cpu核数量，当然可以通过p = Pool(n)来设置
 ```
