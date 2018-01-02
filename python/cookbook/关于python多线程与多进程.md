@@ -1,0 +1,55 @@
+## 关于python多线程与多进程
+
+### multiprocessing
+*python 是跨平台的，自然页提供了一个跨平台的多进程支持，multiprocessing模块就是跨平台版本的多进程模块*
+```python
+from multiprocessing import Process
+import os
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+def netease(name):
+  time.sleep(3)
+  print 'Run child process %s(%s)...'%(name, os.getpid())
+
+def tencent(name):
+  time.sleep(3)
+  print 'Run child process %s(%s)...'%(name, os.getpid())
+
+if __name__ == '__main__':
+    print 'Parent process id is %s'%os.getpid()
+    p = Process(target=netease, args=('chiji',))  #创建子进程时只需传入一个目标函数及其参数
+    p1 = Process(target=tencent, args=('wangzhe',))
+    print 'Process will start'
+    p.start() #用start()方法启动子进程
+    p1.start()
+    p.join()  #用join()方法等待子进程结束再继续往下运行
+    p1.join()
+    print 'Process end'  
+```
+
+### Pool
+* **如果要启动大量的子进程，可以使用进程池的方式批量创建子进程** *
+```python
+from multiprocessing import Pool
+import os,time,random
+
+def long_time_task(name):
+  print 'Run task %s(%s)...'%(name, os.getpid())
+  start = time.time()
+  time.sleep(random.random() * 3)
+  end = time.time()
+  print 'Task %s runs %0.2f seconds.' %(name, (end-start))
+
+if __name__ == '__main__':
+  print 'Parent process %s.'%os.getpid()
+  p = Pool()
+  for i in range(10):
+    p.apply_async(long_time_task, args=(i,))  #调用方法apply_async()执行进程，传入目标函数和参数
+  print 'Waiting for all subprocess done...'
+  p.close() #调用close方法之后，就不能网进程池中添加进程了
+  p.join()  #调用join方法等待子进程全部执行结束
+  print 'All subprocesses done'
+  **默认情况下，pool并发执行的进程数等于cpu核数量，当然可以通过p = Pool(n)来设置**
+```
