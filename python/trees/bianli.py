@@ -23,7 +23,7 @@ def dfs(root):
 
 def bfs(root):
     """
-        广度优先遍历
+        广度优先遍历(层次遍历)
     """
     q = [root]
     while q:

@@ -1,17 +1,18 @@
 #coding:utf-8
-from stack import Stack
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
-def test(string):
-    s = Stack()
-    for item in string:
-        if item == '(':
-            s.push(item)
-        elif item == ')' and not s.isEmpty():
-            s.pop()
-        else:
-            return False
-    return True
+def square(x):
+    """Calculates the square of the number x """
+    return x * x
+
+def changeName(n):
+    n[0] = "Mr. XuHoo"
 
 
-if __name__ == '__main__':
-    print test('((((()))))')
+names = ['kang', 'shao', 'shun']
+n = names[::]
+changeName(n)
+print names
+
