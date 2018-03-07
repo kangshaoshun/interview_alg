@@ -141,10 +141,82 @@ class LinkList(object):
                 return slow
         return None
 
+    def getIntersectionNode(self, headA, headB):
+        """
+        判断两个链表(非带环)是否相交，如果相交，返回相交的首节点
+        :type headA: ListNode
+        :type headB: ListNode
+        :rtype :ListNode
+        思路:判断两个链表的长度，更长的链表先走(长度差)步，然后两个链表同速一起走，第一个相等的节点就是目标返回节点
+        """
+        pre_a = ListNode(-1)
+        pre_b = ListNode(-1)
+        pre_a.next = headA
+        pre_b.next = headB
+        length_a = length_b = 0
+        while headA:
+            length_a += 1
+            headA = headA.next
+        while headB:
+            length_b += 1
+            headB = headB.next
+        if length_a < length_b:
+            while length_b - length_a:
+                headB = headB.next
+                length_b -= 1
+        else:
+            while length_a - length_b:
+                headA = headA.next
+                length_a -= 1
+        headA = pre_a
+        headB = pre_b
+        while headA:
+            if headA == headB:
+                return headA
+            else:
+                headA = headA.next
+                headB = headB.next
+        return None
+    
+    def intersectionII(self, headA, headB):
+        """
+        扩展:判断带环链表是否相交
+        :type headA: ListNode
+        :type headB: ListNode
+        :rtype: bool
+        思路：带环链表，对于两链表相交，则环上的任意一个节点必然是另一个链表的节点，先快慢指针找到环上的某个节点，判断是否在另一个链表上
+        """
+        fast = slow = pre_a = ListNode(-1)
+        pre_a.next = headA
+        pre_b = ListNode(-1)
+        pre_b.next = headB
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if fast == slow:
+                break        
+        while headB:
+            if headB == slow:
+                return True
+            else:
+                headB = headB.next
+        return False
+      
 if __name__ == '__main__':
+    """
     l = LinkList()
     head = ListNode(1)
     head.next = ListNode(2)
     head.next.next = ListNode(2)
     head.next.next.next = ListNode(1)
     print l.isPalindrome(head)
+    """
+    l = LinkList()
+    head_a = ListNode(0)
+    head_a.next = ListNode(1)
+    head_a.next.next = ListNode(2)
+    head_a.next.next.next = ListNode(3)
+    head_a.next.next.next.next = ListNode(4)
+    head_a.next.next.next.next.next = head_a.next.next
+    head_b = ListNode(5)
+    print l.intersectionII(head_a, head_b)
