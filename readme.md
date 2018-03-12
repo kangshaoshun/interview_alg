@@ -2,7 +2,8 @@
 
 *this reprository is about the solutions of leetcode using python language, also there may be some notes*
 
-recently, the main points:
-+ 实习相关要确定了，简历，试题等的准备
-+ 小论文成文稿尽快要有着落了
-+ 项目的深入学习
+[for interview](https://github.com/kangshaoshun/interview_alg/tree/master/common_alg)
+
+[leetcode with python](https://github.com/kangshaoshun/interview_alg/tree/master/leetcode/python)
+
+[python notes](https://github.com/kangshaoshun/interview_alg/tree/master/python)
