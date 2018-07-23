@@ -7,3 +7,5 @@
 [leetcode with python](https://github.com/kangshaoshun/interview_alg/tree/master/leetcode/python)
 
 [python notes](https://github.com/kangshaoshun/interview_alg/tree/master/python)
+
+[leetcode second](https://github.com/kangshaoshun/interview_alg/tree/master/leetcode_sec)
