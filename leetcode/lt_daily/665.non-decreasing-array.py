@@ -56,9 +56,12 @@ class Solution(object):
             if nums[i] > nums[i + 1]:
                 cnt += 1
                 ind = i
+        #如果有多处反序，返回False
         if cnt > 1:return False
-        if cnt < 1 or ind == 0:return True
-        return nums[ind - 1] <= nums[ind + 1]
+        #如果只有一处反序 或者这个反序ind == 0 or ind == length - 2 或者 反序的两个数随便改动一个数就可以实现要求就返回True，否则返回False
+        if cnt < 1 or ind == 0 or ind == length - 2:return True
+        if nums[ind - 1] <= nums[ind + 1] or nums[ind] <= nums[ind + 2]:return True
+        return False
 
 
 if __name__ == '__main__':
