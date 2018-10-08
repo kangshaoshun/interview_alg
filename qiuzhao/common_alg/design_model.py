@@ -32,5 +32,5 @@ if __name__ == '__main__':
     id2 = id(SingleModel())
     print id1 == id2
 
-    fm = FactoryMode()
-    print fm.get_instance().__class__.__name__
+    #fm = FactoryMode()
+    #print fm.get_instance().__class__.__name__
