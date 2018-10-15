@@ -1,9 +1,9 @@
 ### 机器学习
-####　逻辑回归
+#### 逻辑回归
 #### kmeans/knn 
 #### SVM
 #### 决策树／RF
-####　GBDT
+#### GBDT
 #### EM
 #### HMM
 #### CRF
@@ -14,4 +14,4 @@
 #### RNN
 #### LSTM/GRU
 #### attention/seq2seq
-####　前沿模型
+#### 前沿模型
