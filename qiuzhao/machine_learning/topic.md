@@ -14,4 +14,5 @@
 #### RNN
 #### LSTM/GRU
 #### attention/seq2seq
-#### 前沿模型
+#### word2vec原理(哈弗曼／负采样　训练过程)
+#### 前沿model

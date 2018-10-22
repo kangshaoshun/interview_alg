@@ -12,7 +12,6 @@ class LinkNode(object):
         self.val = x
         self.next = None
 
-
 class Solution(object):
     def reverse_print_linklist(self, root):
         """

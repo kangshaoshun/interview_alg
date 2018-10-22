@@ -47,3 +47,5 @@ def pow(base, exp):
             return get_result(base, exp)
         else:
             return 1.0/get_result(base, -exp)
+
+print pow(int(sys.argv[1]), int(sys.argv[2]))

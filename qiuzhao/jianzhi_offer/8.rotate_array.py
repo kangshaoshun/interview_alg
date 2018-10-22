@@ -29,6 +29,37 @@ class Solution(object):
                 return min(nums[i : j + 1])
         return nums[mid]
 
+    def binary_search(self, nums, target):
+        pass
+
+    def search_target(self, nums, target):
+        if not nums:return -1
+        if nums[0] < nums[-1]:
+            return self.binary_search(nums, target)
+        i, j = 0, len(nums)
+        while i < j:
+            mid = i + (j - i) / 2
+            if nums[mid] == target:
+                return mid
+            if nums[mid] >= nums[i]:
+                if target >= nums[i]:
+                    if target < nums[mid]:
+                        j = mid - 1
+                    else:
+                        i = mid + 1
+                else:
+                    i = mid + 1
+            else:
+                if target >= nums[i]:
+                    j = mid - 1
+                else:
+                    if target > nums[mid]:
+                        i = mid + 1
+                    else:
+                        j = mid - 1
+        return -1
+
+
 
 if __name__ == '__main__':
     s = Solution()
