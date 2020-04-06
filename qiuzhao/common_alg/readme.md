@@ -1,1 +1,1 @@
-# these are some common algorithm for interview
+# there are some common algorithm for interview
